@@ -1,13 +1,13 @@
 package com.suprem.capulan.model.user;
 
 import com.suprem.capulan.model.location.Terminal;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -15,6 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "USUARIO")
 public class Usuario {
+
     @Id
     @Column(name = "ID_USUARIO", nullable = false)
     private Integer id;
@@ -27,11 +28,11 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private Genre sexo;
+    private Genre genre;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 15)
-    private UserType userType;
+    private UserType tipo;
 
     @Column(name = "SENHA", nullable = false, length = 50)
     private String senha;
@@ -39,19 +40,14 @@ public class Usuario {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_TERMINAL", nullable = false)
-    @ToString.Exclude
     private Terminal idTerminal;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Usuario usuario = (Usuario) o;
-        return id != null && Objects.equals(id, usuario.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
+    public Usuario(String nome, String bi, Genre genre, UserType tipo, String senha, Terminal idTerminal) {
+        this.nome = nome;
+        this.bi = bi;
+        this.genre = genre;
+        this.tipo = tipo;
+        this.senha = senha;
+        this.idTerminal = idTerminal;
     }
 }

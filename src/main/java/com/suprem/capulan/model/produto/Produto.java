@@ -16,11 +16,10 @@ public class Produto {
     private String nome;
 
     @Column(name = "PRECO", nullable = false)
-    private Long preco;
+    private Number preco;
 
     @Column(name = "QUANTIDADE_DISPONIVEL", nullable = false)
     private Long quantidadeDisponivel;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_CATEGORIA", nullable = false)

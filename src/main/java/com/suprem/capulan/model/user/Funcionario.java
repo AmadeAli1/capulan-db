@@ -1,9 +1,6 @@
 package com.suprem.capulan.model.user;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,6 +10,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "FUNCIONARIO")
@@ -22,16 +20,23 @@ public class Funcionario {
     private Integer id;
 
     @Column(name = "SALARIO", nullable = false)
-    private Long salario;
+    private Float salario;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "AREA_TRABALHO", nullable = false, length = 50)
-    private JobArea JobArea;
+    private String areaTrabalho;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_USUARIO", nullable = false)
-    private Usuario usuario;
+    @ToString.Exclude
+    private Usuario idUsuario;
+
+
+    public Funcionario(Float salario, String areaTrabalho, Usuario idUsuario) {
+        this.salario = salario;
+        this.areaTrabalho = areaTrabalho;
+        this.idUsuario = idUsuario;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -45,5 +50,4 @@ public class Funcionario {
     public int hashCode() {
         return getClass().hashCode();
     }
-
 }

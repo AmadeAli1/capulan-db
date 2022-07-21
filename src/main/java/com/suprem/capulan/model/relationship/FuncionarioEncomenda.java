@@ -16,6 +16,8 @@ import java.util.Objects;
 @Table(name = "FUNCIONARIO_ENCOMENDA")
 public class FuncionarioEncomenda {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FUNCIONARIO_ENCOMENDA_ID")
+    @SequenceGenerator(name = "FUNCIONARIO_ENCOMENDA_ID", sequenceName = "FUNCIONARIO_ENCOMENDA_ID", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     private Integer id;
 

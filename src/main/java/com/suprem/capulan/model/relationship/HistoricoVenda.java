@@ -20,6 +20,8 @@ import java.util.Set;
 @Table(name = "HISTORICO_VENDAS")
 public class HistoricoVenda {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HISTORICO_ID")
+    @SequenceGenerator(name = "HISTORICO_ID", sequenceName = "HISTORICO_ID", allocationSize = 1)
     @Column(name = "ID_HISTORICO", nullable = false)
     private Integer id;
 

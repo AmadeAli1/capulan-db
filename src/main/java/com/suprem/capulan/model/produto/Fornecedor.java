@@ -8,6 +8,8 @@ import java.util.Set;
 @Table(name = "FORNECEDOR")
 public class Fornecedor {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FORNECEDOR_ID")
+    @SequenceGenerator(name = "FORNECEDOR_ID", sequenceName = "FORNECEDOR_ID", allocationSize = 1)
     @Column(name = "ID_FORNECEDOR", nullable = false)
     private Integer id;
 
@@ -23,6 +25,10 @@ public class Fornecedor {
 
     @OneToMany(mappedBy = "idFornecedor")
     private Set<Stock> stocks = new LinkedHashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
 
     public Set<Stock> getStocks() {
         return stocks;

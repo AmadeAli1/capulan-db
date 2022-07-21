@@ -16,6 +16,8 @@ import java.util.Objects;
 @Table(name = "CLIENTE")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENTE_ID")
+    @SequenceGenerator(name = "CLIENTE_ID", sequenceName = "CLIENTE_ID", allocationSize = 1)
     @Column(name = "ID_CLIENTE", nullable = false)
     private Integer id;
 

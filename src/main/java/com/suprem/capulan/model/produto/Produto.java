@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "PRODUTO")
 public class Produto {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_ID")
+    @SequenceGenerator(name = "PRODUTO_ID", sequenceName = "PRODUTO_ID", allocationSize = 1)
     @Column(name = "ID_PRODUTO", nullable = false)
     private Integer id;
 
@@ -16,7 +18,7 @@ public class Produto {
     private String nome;
 
     @Column(name = "PRECO", nullable = false)
-    private Number preco;
+    private long preco;
 
     @Column(name = "QUANTIDADE_DISPONIVEL", nullable = false)
     private Long quantidadeDisponivel;
@@ -30,6 +32,9 @@ public class Produto {
     @JoinColumn(name = "ID_STOCK", nullable = false)
     private Stock idStock;
 
+    public Integer getId() {
+        return id;
+    }
 
 
 }

@@ -26,6 +26,8 @@ import java.util.Set;
 @Table(name = "ENCOMENDA")
 public class Encomenda {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ENCOMENDA_ID")
+    @SequenceGenerator(name = "ENCOMENDA_ID", sequenceName = "ENCOMENDA_ID", allocationSize = 1)
     @Column(name = "ID_ENCOMENDA", nullable = false)
     private Integer id;
 

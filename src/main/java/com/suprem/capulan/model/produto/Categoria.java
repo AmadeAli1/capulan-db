@@ -1,6 +1,9 @@
 package com.suprem.capulan.model.produto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -30,6 +33,12 @@ public class Categoria {
     @OneToMany(mappedBy = "idCategoria")
     @ToString.Exclude
     private Set<Produto> produtos = new LinkedHashSet<>();
+
+    public Categoria(String nome, String tipo) {
+        this.nome = nome;
+        this.id=id;
+        this.tipo = tipo;
+    }
 
     @Override
     public boolean equals(Object o) {

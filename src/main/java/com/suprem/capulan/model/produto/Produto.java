@@ -1,10 +1,18 @@
 package com.suprem.capulan.model.produto;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "PRODUTO")
 public class Produto {
@@ -32,9 +40,23 @@ public class Produto {
     @JoinColumn(name = "ID_STOCK", nullable = false)
     private Stock idStock;
 
-    public Integer getId() {
-        return id;
+    public Produto(String nome, long preco, Long quantidadeDisponivel) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Produto produto = (Produto) o;
+        return id != null && Objects.equals(id, produto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

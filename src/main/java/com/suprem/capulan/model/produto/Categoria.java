@@ -36,7 +36,6 @@ public class Categoria {
 
     public Categoria(String nome, String tipo) {
         this.nome = nome;
-        this.id=id;
         this.tipo = tipo;
     }
 

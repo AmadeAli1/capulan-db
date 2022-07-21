@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TerminalService {
@@ -19,6 +20,10 @@ public class TerminalService {
 
     public Boolean save(Terminal terminal) {
         return terminalRepository.insert(terminal.getNome(), terminal.getRegion().name()) == 1;
+    }
+
+    public Optional<Terminal> findTerminal(Integer id) {
+        return terminalRepository.findById(id);
     }
 
     public List<TerminalDto> findAll() {

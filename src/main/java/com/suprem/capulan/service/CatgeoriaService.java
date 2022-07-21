@@ -44,7 +44,7 @@ public class CatgeoriaService {
     }
 
 
-    private Optional<Categoria> findById(Integer id) {
+    public Optional<Categoria> findById(Integer id) {
         return categoriaRepository.findById(id);
     }
 

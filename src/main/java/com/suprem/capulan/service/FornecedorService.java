@@ -15,7 +15,7 @@ public class FornecedorService implements CrudDatabase<Fornecedor> {
 
     public void save(Fornecedor fornecedor) {
         if (fornecedor == null) {
-            System.out.println("Fornecedor must not be null!!");
+            System.out.println("Fornecedor must not be null!");
         } else {
             this.fornecedorRepository.save(fornecedor);
         }

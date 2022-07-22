@@ -7,7 +7,7 @@ public interface CrudDatabase<T> {
 
     List<T> findAll();
 
-    Optional<T> findOne(Integer id);
+    Optional<T> findById(Integer id);
 
     void deleteById(Integer id);
 

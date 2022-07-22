@@ -1,12 +1,16 @@
 package com.suprem.capulan.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@AllArgsConstructor
+@Getter
 public class Message {
     private String field;
     private String message;
     private final HttpStatus status = HttpStatus.BAD_REQUEST;
+
+    public Message(String field, String message) {
+        this.field = field;
+        this.message = message;
+    }
 }

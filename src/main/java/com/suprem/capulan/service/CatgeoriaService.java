@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CatgeoriaService {
+public class CatgeoriaService implements CrudDatabase<Categoria> {
     private final CategoriaRepository categoriaRepository;
 
     @Autowired
@@ -28,7 +28,9 @@ public class CatgeoriaService {
         }
     }
 
-    public void delete(Integer id) {
+
+    @Override
+    public void deleteById(Integer id) {
         Optional<Categoria> categoria = findById(id);
         if (categoria.isPresent()) {
             categoriaRepository.deleteById(id);
@@ -39,11 +41,12 @@ public class CatgeoriaService {
         }
     }
 
+    @Override
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
     }
 
-
+    @Override
     public Optional<Categoria> findById(Integer id) {
         return categoriaRepository.findById(id);
     }

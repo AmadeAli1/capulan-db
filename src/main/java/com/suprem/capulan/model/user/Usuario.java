@@ -1,5 +1,6 @@
 package com.suprem.capulan.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.suprem.capulan.model.location.Terminal;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -30,25 +31,26 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private Genre genre;
+    private Genre sexo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 15)
-    private UserType tipo;
+    private UserType userType;
 
     @Column(name = "SENHA", nullable = false, length = 50)
     private String senha;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_TERMINAL", nullable = false)
     private Terminal idTerminal;
 
-    public Usuario(String nome, String bi, Genre genre, UserType tipo, String senha, Terminal idTerminal) {
+    public Usuario(String nome, String bi, Genre sexo, UserType userType, String senha, Terminal idTerminal) {
         this.nome = nome;
         this.bi = bi;
-        this.genre = genre;
-        this.tipo = tipo;
+        this.sexo = sexo;
+        this.userType = userType;
         this.senha = senha;
         this.idTerminal = idTerminal;
     }

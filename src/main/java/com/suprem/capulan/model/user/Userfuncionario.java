@@ -4,10 +4,8 @@ import lombok.Getter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -20,10 +18,10 @@ import java.util.Objects;
 public class Userfuncionario {
     @Id
     @Column(name = "ID_FUNCIONARIO", nullable = false)
-    private Integer idFuncionario;
+    private Integer id;
 
     @Column(name = "ID_USUARIO", nullable = false)
-    private Integer idUsuario;
+    private Integer idUser;
 
     @Column(name = "BI", nullable = false, length = 13)
     private String bi;
@@ -37,17 +35,20 @@ public class Userfuncionario {
     @Column(name = "SENHA", nullable = false, length = 50)
     private String senha;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 15)
-    private String tipo;
+    private UserType userType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private String sexo;
+    private Genre sexo;
 
     @Column(name = "SALARIO", nullable = false)
     private Long salario;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "AREA_TRABALHO", nullable = false, length = 50)
-    private String areaTrabalho;
+    private JobArea jobArea;
 
     protected Userfuncionario() {
     }
@@ -57,7 +58,7 @@ public class Userfuncionario {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Userfuncionario that = (Userfuncionario) o;
-        return idFuncionario != null && Objects.equals(idFuncionario, that.idFuncionario);
+        return id != null && Objects.equals(id, that.id);
     }
 
     @Override

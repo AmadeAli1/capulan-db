@@ -1,7 +1,8 @@
 package com.suprem.capulan.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
@@ -11,10 +12,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.Objects;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "FUNCIONARIO")
 public class Funcionario {
@@ -27,9 +28,11 @@ public class Funcionario {
     @Column(name = "SALARIO", nullable = false)
     private Long salario;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "AREA_TRABALHO", nullable = false, length = 50)
-    private String areaTrabalho;
+    private JobArea jobArea;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_USUARIO", nullable = false)
@@ -37,9 +40,9 @@ public class Funcionario {
     private Usuario idUsuario;
 
 
-    public Funcionario(Long salario, String areaTrabalho, Usuario idUsuario) {
+    public Funcionario(Long salario, JobArea areaTrabalho, Usuario idUsuario) {
         this.salario = salario;
-        this.areaTrabalho = areaTrabalho;
+        this.jobArea = areaTrabalho;
         this.idUsuario = idUsuario;
     }
 

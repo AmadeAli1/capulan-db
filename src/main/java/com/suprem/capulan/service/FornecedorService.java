@@ -13,24 +13,32 @@ import java.util.Optional;
 public class FornecedorService implements CrudDatabase<Fornecedor> {
     private final FornecedorRepository fornecedorRepository;
 
-
     public void save(Fornecedor fornecedor) {
-        //fornecedorRepository.save(fornecedor);
+        if (fornecedor == null) {
+            System.out.println("Fornecedor must not be null!!");
+        } else {
+            this.fornecedorRepository.save(fornecedor);
+        }
     }
 
     @Override
     public List<Fornecedor> findAll() {
-        return null;
+        return fornecedorRepository.findAll();
     }
 
     @Override
-    public Optional<Fornecedor> findOne(Integer id) {
-        return Optional.empty();
+    public Optional<Fornecedor> findById(Integer id) {
+        return fornecedorRepository.findById(id);
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        if (findById(id).isPresent()) {
+            this.fornecedorRepository.deleteById(id);
+            System.out.println("Fornecedor eliminado");
+        } else {
+            System.out.println("Fornecedor not found!!");
+        }
     }
 
 }

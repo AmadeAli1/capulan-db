@@ -18,7 +18,7 @@ public class TerminalService {
         this.terminalRepository = terminalRepository;
     }
 
-    public Boolean save(Terminal terminal) {
+    public Boolean gravar(Terminal terminal) {
         return terminalRepository.insert(terminal.getNome(), terminal.getRegion().name()) == 1;
     }
 
@@ -32,4 +32,6 @@ public class TerminalService {
                 .map(TerminalDto::new)
                 .toList();
     }
+
+
 }

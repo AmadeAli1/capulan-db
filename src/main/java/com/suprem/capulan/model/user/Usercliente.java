@@ -4,10 +4,7 @@ import lombok.Getter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -23,7 +20,7 @@ public class Usercliente {
     private String bi;
 
     @Column(name = "ID_USUARIO", nullable = false)
-    private Integer idUsuario;
+    private Integer idUser;
 
     @Column(name = "ID_TERMINAL", nullable = false)
     private Integer idTerminal;
@@ -34,11 +31,13 @@ public class Usercliente {
     @Column(name = "SENHA", nullable = false, length = 50)
     private String senha;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 15)
-    private String tipo;
+    private UserType userType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "SEXO", length = 10)
-    private String sexo;
+    private Genre sexo;
 
     @Column(name = "EMAIL", nullable = false, length = 50)
     private String email;
@@ -50,8 +49,7 @@ public class Usercliente {
     private String codigoPostal;
 
     @Column(name = "ID_CLIENTE", nullable = false)
-    private Integer idCliente;
-
+    private Integer id;
 
     protected Usercliente() {
     }

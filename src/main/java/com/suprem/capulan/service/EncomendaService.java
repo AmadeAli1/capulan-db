@@ -2,6 +2,7 @@ package com.suprem.capulan.service;
 
 import com.suprem.capulan.model.relationship.Encomenda;
 import com.suprem.capulan.model.relationship.FuncionarioEncomenda;
+import com.suprem.capulan.model.views.Encomendaproduto;
 import com.suprem.capulan.repository.EncomendaRepository;
 import com.suprem.capulan.repository.FuncionarioEncomendaRepository;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +58,10 @@ public class EncomendaService implements CrudDatabase<Encomenda> {
         return maxid == null ? 0 : maxid;
     }
 
+    public List<Encomendaproduto> findAllEncomendas() {
+        return repository.findAllEncomenda();
+    }
+
     @Override
     public List<Encomenda> findAll() {
         return repository.findAll();
@@ -76,4 +81,6 @@ public class EncomendaService implements CrudDatabase<Encomenda> {
             System.out.println("Encomenda not found!!");
         }
     }
+
+
 }

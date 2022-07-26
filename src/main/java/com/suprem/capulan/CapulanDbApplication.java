@@ -21,10 +21,10 @@ public class CapulanDbApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        var usuario = new Usuario("Marques JR", "1212121212fid", Genre.MASCULINO, UserType.CLIENTE, "senha123333");
-        var cliente = new Cliente("marques123jr@gmail.com", "123wqrs", "Benfica");
+        //var usuario = new Usuario("Marques JR", "1212121212fid", Genre.MASCULINO, UserType.CLIENTE, "senha123333");
+        //var cliente = new Cliente("marques123jr@gmail.com", "123wqrs", "Benfica");
 
-        service.gravarCliente(usuario,cliente,4);
+        //service.gravarCliente(usuario,cliente,4);
 
     }
 

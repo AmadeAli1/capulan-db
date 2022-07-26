@@ -13,6 +13,9 @@ import java.util.Optional;
 public class ProdutoService implements CrudDatabase<Produto> {
     private final ProdutoRepository produtoRepository;
 
+    public void save(Produto produto) {
+        this.produtoRepository.save(produto);
+    }
     @Override
     public List<Produto> findAll() {
         return produtoRepository.findAll();

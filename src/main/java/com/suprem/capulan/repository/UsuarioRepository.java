@@ -21,7 +21,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "select f from Userfuncionario f")
     List<Userfuncionario> findAllFuncionario();
 
-    @Query(value = "select f from Userfuncionario as f  where f.id = ?1")
+    @Query(value = "select f from Userfuncionario f  where f.id = ?1")
     Optional<Userfuncionario> findFuncionarioById(Integer codigo);
 
     @Query(value = "select f from Usercliente as f  where f.id = ?1")

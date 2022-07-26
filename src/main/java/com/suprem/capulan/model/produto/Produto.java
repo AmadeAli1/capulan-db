@@ -40,12 +40,10 @@ public class Produto {
     @JoinColumn(name = "ID_STOCK", nullable = false)
     private Stock idStock;
 
-    public Produto(String nome, long preco, Long quantidadeDisponivel) {
+    public Produto(String nome, long preco) {
         this.nome = nome;
         this.preco = preco;
-        this.quantidadeDisponivel = quantidadeDisponivel;
     }
-
 
     @Override
     public boolean equals(Object o) {

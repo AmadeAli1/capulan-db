@@ -40,10 +40,9 @@ public class Funcionario {
     private Usuario idUsuario;
 
 
-    public Funcionario(Long salario, JobArea areaTrabalho, Usuario idUsuario) {
+    public Funcionario(Long salario, JobArea areaTrabalho) {
         this.salario = salario;
         this.jobArea = areaTrabalho;
-        this.idUsuario = idUsuario;
     }
 
     @Override

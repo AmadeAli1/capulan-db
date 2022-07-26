@@ -27,16 +27,17 @@ public class Categoria {
     @Column(name = "NOME", nullable = false, length = 50)
     private String nome;
 
-    @Column(name = "TIPO", nullable = false, length = 20)
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TIPO", nullable = false)
+    private CategoriaType categoriaType;
 
     @OneToMany(mappedBy = "idCategoria")
     @ToString.Exclude
     private Set<Produto> produtos = new LinkedHashSet<>();
 
-    public Categoria(String nome, String tipo) {
+    public Categoria(String nome, CategoriaType categoriaType) {
         this.nome = nome;
-        this.tipo = tipo;
+        this.categoriaType = categoriaType;
     }
 
     @Override

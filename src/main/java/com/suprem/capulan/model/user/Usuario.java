@@ -46,12 +46,11 @@ public class Usuario {
     @JoinColumn(name = "ID_TERMINAL", nullable = false)
     private Terminal idTerminal;
 
-    public Usuario(String nome, String bi, Genre sexo, UserType userType, String senha, Terminal idTerminal) {
+    public Usuario(String nome, String bi, Genre sexo, UserType userType, String senha) {
         this.nome = nome;
         this.bi = bi;
         this.sexo = sexo;
         this.userType = userType;
         this.senha = senha;
-        this.idTerminal = idTerminal;
     }
 }

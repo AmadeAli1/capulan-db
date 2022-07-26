@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.suprem.capulan.service.UserService.INCREMENT;
+
 @RequiredArgsConstructor
 @Service
 public class StockService implements CrudDatabase<Stock> {
@@ -25,6 +27,7 @@ public class StockService implements CrudDatabase<Stock> {
         var categoria = catgeoriaService.findById(idCategoria);
         if (terminal.isPresent() && fornecedor.isPresent() && categoria.isPresent()) {
             stock.setIdFornecedor(fornecedor.get());
+            stock.setId(STOCKMAXID() + INCREMENT);
             stock.setIdTerminal(terminal.get());
             Stock stock1 = stockRepository.save(stock);
             produto.setIdCategoria(categoria.get());
@@ -39,6 +42,12 @@ public class StockService implements CrudDatabase<Stock> {
     @Override
     public List<Stock> findAll() {
         return stockRepository.findAll();
+    }
+
+
+    public Integer STOCKMAXID() {
+        Integer maxid = stockRepository.MAXID();
+        return maxid == null ? 0 : maxid;
     }
 
     @Override

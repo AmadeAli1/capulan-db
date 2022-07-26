@@ -26,12 +26,10 @@ import java.util.Set;
 @Table(name = "ENCOMENDA")
 public class Encomenda {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ENCOMENDA_ID")
-    @SequenceGenerator(name = "ENCOMENDA_ID", sequenceName = "ENCOMENDA_ID", allocationSize = 1)
     @Column(name = "ID_ENCOMENDA", nullable = false)
     private Integer id;
 
-    @Column(name = "DATA_ENTREGA", nullable = false)
+    @Column(name = "DATA_ENTREGA", nullable = true)
     private LocalDate dataEntrega;
 
     @Column(name = "QUANTIDADE", nullable = false)
@@ -42,7 +40,7 @@ public class Encomenda {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 50)
-    private EncomendaEstado estado;
+    private EncomendaEstado estado = EncomendaEstado.PENDENTE;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -62,6 +60,11 @@ public class Encomenda {
     @ToString.Exclude
     private Terminal terminal;
 
+    public Encomenda(Long quantidade) {
+        this.quantidade = quantidade;
+    }
+
+
     @ManyToMany
     @JoinTable(name = "FUNCIONARIO_ENCOMENDA",
             joinColumns = @JoinColumn(name = "ID_ENCOMENDA"),
@@ -69,18 +72,10 @@ public class Encomenda {
     @ToString.Exclude
     private Set<Funcionario> funcionarios = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "encomenda")
-    @ToString.Exclude
-    private Set<FuncionarioEncomenda> funcionarioEncomendas = new LinkedHashSet<>();
 
-    public Set<FuncionarioEncomenda> getFuncionarioEncomendas() {
-        return funcionarioEncomendas;
+    public void addFuncionario(Funcionario funcionario) {
+        funcionarios.add(funcionario);
     }
-
-    public void setFuncionarioEncomendas(Set<FuncionarioEncomenda> funcionarioEncomendas) {
-        this.funcionarioEncomendas = funcionarioEncomendas;
-    }
-
 
     @Override
     public boolean equals(Object o) {

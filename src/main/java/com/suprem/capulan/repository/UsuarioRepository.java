@@ -12,6 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+    @Query("select max(id) as MAXID from Usuario ")
+    Integer MAXID();
+
     @Query("select u from Usuario u where u.bi = ?1")
     public Optional<Usuario> findByBi(String bi);
 

@@ -17,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+    public static final int INCREMENT = 1;
     private final UsuarioRepository usuarioRepository;
     private final ClienteRepository clienteRepository;
     private final FuncionarioRepository funcionarioRepository;
@@ -34,8 +35,12 @@ public class UserService {
         Usuario usuarioSaved = null;
         try {
             usuario.setIdTerminal(terminal.get());
+            usuario.setId(USERMAXID() + INCREMENT);
             usuarioSaved = usuarioRepository.save(usuario);
             cliente.setIdUsuario(usuarioSaved);
+
+            cliente.setId(CLIENTEMAXID() + INCREMENT);
+
             Cliente save = clienteRepository.save(cliente);
             Optional<Usercliente> clienteById = usuarioRepository.findClienteById(save.getId());
             return new ResponseEntity<>(clienteById.get(), HttpStatus.CREATED);
@@ -56,8 +61,10 @@ public class UserService {
         Usuario usuarioSaved = null;
         try {
             usuario.setIdTerminal(terminal.get());
+            usuario.setId(USERMAXID() + INCREMENT);
             usuarioSaved = usuarioRepository.save(usuario);
             funcionario.setIdUsuario(usuarioSaved);
+            funcionario.setId(FUNCIONARIOMAXID() + INCREMENT);
             Funcionario save = funcionarioRepository.save(funcionario);
             Optional<Userfuncionario> funcionarioById = usuarioRepository.findFuncionarioById(save.getId());
             return new ResponseEntity<>(funcionarioById.get(), HttpStatus.CREATED);
@@ -77,6 +84,33 @@ public class UserService {
             return ResponseEntity.ok(funcionario.get());
         }
         return ResponseEntity.badRequest().body(new Message("senha", "Senha Invalida"));
+    }
+
+    public Integer USERMAXID() {
+        Integer maxid = usuarioRepository.MAXID();
+        return maxid == null ? 0 : maxid;
+    }
+
+    public Integer CLIENTEMAXID() {
+        Integer maxid = clienteRepository.MAXID();
+        return maxid == null ? 0 : maxid;
+    }
+
+    public Integer FUNCIONARIOMAXID() {
+        Integer maxid = funcionarioRepository.MAXID();
+        return maxid == null ? 0 : maxid;
+    }
+
+    public Optional<Cliente> findClienteById(int idCliente) {
+        return clienteRepository.findById(idCliente);
+    }
+
+    public Optional<Funcionario> findFuncionarioById(int idFuncionario) {
+        return funcionarioRepository.findById(idFuncionario);
+    }
+
+    public Optional<Usuario> findById(int idUsuario) {
+        return usuarioRepository.findById(idUsuario);
     }
 
     public List<Usercliente> findAllClientes() {

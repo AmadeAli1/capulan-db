@@ -1,8 +1,10 @@
 package com.suprem.capulan;
 
-import com.suprem.capulan.model.produto.Produto;
-import com.suprem.capulan.model.produto.Stock;
-import com.suprem.capulan.service.StockService;
+import com.suprem.capulan.model.user.Cliente;
+import com.suprem.capulan.model.user.Genre;
+import com.suprem.capulan.model.user.UserType;
+import com.suprem.capulan.model.user.Usuario;
+import com.suprem.capulan.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,14 +15,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CapulanDbApplication implements CommandLineRunner {
     @Autowired
-    private StockService service;
+    private UserService service;
 
 
     @Override
     public void run(String... args) throws Exception {
-        Stock stock = new Stock(100L, 9000L);
-        Produto produto = new Produto("Adidas-Shorts-Capulan", 900);
-        service.gravar(1, 1, 1, stock, produto);
+
+        var usuario = new Usuario("Marques JR", "1212121212fid", Genre.MASCULINO, UserType.CLIENTE, "senha123333");
+        var cliente = new Cliente("marques123jr@gmail.com", "123wqrs", "Benfica");
+
+        service.gravarCliente(usuario,cliente,4);
+
     }
 
 

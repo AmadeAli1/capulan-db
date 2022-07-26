@@ -21,9 +21,7 @@ import java.util.Objects;
 @Table(name = "STOCK")
 public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STOCK_ID")
-    @SequenceGenerator(name = "STOCK_ID", sequenceName = "STOCK_ID", allocationSize = 1)
-    @Column(name = "ID_STOCK", nullable = false)
+     @Column(name = "ID_STOCK", nullable = false)
     private Integer id;
 
     @Column(name = "QUANTIDADE", nullable = false)

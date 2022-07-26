@@ -8,17 +8,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.suprem.capulan.service.UserService.INCREMENT;
+
 @RequiredArgsConstructor
 @Service
 public class ProdutoService implements CrudDatabase<Produto> {
     private final ProdutoRepository produtoRepository;
 
     public void save(Produto produto) {
+        produto.setId(PRODUTOMAXID() + INCREMENT);
         this.produtoRepository.save(produto);
     }
+
     @Override
     public List<Produto> findAll() {
         return produtoRepository.findAll();
+    }
+
+
+    public Integer PRODUTOMAXID() {
+        Integer maxid = produtoRepository.MAXID();
+        return maxid == null ? 0 : maxid;
     }
 
     @Override

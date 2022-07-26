@@ -14,4 +14,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query("select (count(c) > 0) from Cliente c where c.email = :email")
     Boolean existsByEmail(@Param("email") String email);
+
+    @Query("select max(id) as MAXID from Cliente ")
+    Integer MAXID();
 }

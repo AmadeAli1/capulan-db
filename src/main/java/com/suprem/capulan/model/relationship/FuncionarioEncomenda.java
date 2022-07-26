@@ -16,9 +16,7 @@ import java.util.Objects;
 @Table(name = "FUNCIONARIO_ENCOMENDA")
 public class FuncionarioEncomenda {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FUNCIONARIO_ENCOMENDA_ID")
-    @SequenceGenerator(name = "FUNCIONARIO_ENCOMENDA_ID", sequenceName = "FUNCIONARIO_ENCOMENDA_ID", allocationSize = 1)
-    @Column(name = "ID", nullable = false)
+   @Column(name = "ID", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -32,6 +30,12 @@ public class FuncionarioEncomenda {
     @JoinColumn(name = "ID_ENCOMENDA", nullable = false)
     @ToString.Exclude
     private Encomenda encomenda;
+
+    public FuncionarioEncomenda(Funcionario funcionario, Encomenda encomenda) {
+        this.funcionario = funcionario;
+        this.encomenda = encomenda;
+    }
+
 
     @Override
     public boolean equals(Object o) {

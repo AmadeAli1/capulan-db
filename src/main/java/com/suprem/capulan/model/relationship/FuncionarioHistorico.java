@@ -16,8 +16,6 @@ import java.util.Objects;
 @Table(name = "FUNCIONARIO_HISTORICO")
 public class FuncionarioHistorico {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FUNCIONARIO_HISTOCO_ID")
-    @SequenceGenerator(name = "FUNCIONARIO_HISTOCO_ID", sequenceName = "FUNCIONARIO_HISTOCO_ID", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     private Integer id;
 

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.suprem.capulan.service.UserService.INCREMENT;
+
 @RequiredArgsConstructor
 @Service
 public class FornecedorService implements CrudDatabase<Fornecedor> {
@@ -17,8 +19,15 @@ public class FornecedorService implements CrudDatabase<Fornecedor> {
         if (fornecedor == null) {
             System.out.println("Fornecedor must not be null!");
         } else {
+            fornecedor.setId(FORNECEDORMAXID() + INCREMENT);
             this.fornecedorRepository.save(fornecedor);
         }
+    }
+
+
+    public Integer FORNECEDORMAXID() {
+        Integer maxid = fornecedorRepository.MAXID();
+        return maxid == null ? 0 : maxid;
     }
 
     @Override

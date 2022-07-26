@@ -19,9 +19,7 @@ import java.util.Set;
 @Table(name = "FORNECEDOR")
 public class Fornecedor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FORNECEDOR_ID")
-    @SequenceGenerator(name = "FORNECEDOR_ID", sequenceName = "FORNECEDOR_ID", allocationSize = 1)
-    @Column(name = "ID_FORNECEDOR", nullable = false)
+     @Column(name = "ID_FORNECEDOR", nullable = false)
     private Integer id;
 
     @Column(name = "NOME_EMPRESA", nullable = false, length = 50)

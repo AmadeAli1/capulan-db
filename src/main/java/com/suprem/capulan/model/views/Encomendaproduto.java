@@ -1,7 +1,7 @@
 package com.suprem.capulan.model.views;
 
+import com.suprem.capulan.model.relationship.Encomenda;
 import lombok.Getter;
-import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +11,6 @@ import java.time.LocalDate;
  */
 @Getter
 @Entity
-@Immutable
 @Table(name = "ENCOMENDAPRODUTO")
 public class Encomendaproduto {
     @Id
@@ -27,8 +26,9 @@ public class Encomendaproduto {
     @Column(name = "DATA_ENTREGA")
     private LocalDate dataEntrega;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 50)
-    private String estado;
+    private Encomenda.EncomendaEstado estado;
 
     @Column(name = "NOME", nullable = false, length = 50)
     private String nome;
@@ -37,5 +37,12 @@ public class Encomendaproduto {
     private String cliente;
 
     @Transient
-    private String date = dataEntrega.toString();
+    private String date;
+
+    @Column(name = "PRECO", nullable = false)
+    private Long preco;
+
+    public String getDate() {
+        return date = dataEntrega == null ? "--/--/----" : dataEntrega.toString();
+    }
 }

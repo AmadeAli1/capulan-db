@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "PRODUTO")
 public class Produto {
     @Id
-     @Column(name = "ID_PRODUTO", nullable = false)
+    @Column(name = "ID_PRODUTO", nullable = false)
     private Integer id;
 
     @Column(name = "NOME", nullable = false, length = 50)
@@ -28,7 +28,7 @@ public class Produto {
 
     @Column(name = "QUANTIDADE_DISPONIVEL", nullable = false)
     private Long quantidadeDisponivel;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_CATEGORIA", nullable = false)
     private Categoria idCategoria;

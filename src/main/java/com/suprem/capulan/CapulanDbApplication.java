@@ -1,30 +1,44 @@
 package com.suprem.capulan;
 
-import com.suprem.capulan.model.user.Cliente;
-import com.suprem.capulan.model.user.Genre;
-import com.suprem.capulan.model.user.UserType;
-import com.suprem.capulan.model.user.Usuario;
-import com.suprem.capulan.service.UserService;
+import com.suprem.capulan.model.produto.*;
+import com.suprem.capulan.model.relationship.Encomenda;
+import com.suprem.capulan.service.CatgeoriaService;
+import com.suprem.capulan.service.EncomendaService;
+import com.suprem.capulan.service.FornecedorService;
+import com.suprem.capulan.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.stream.Stream;
+
 @RequiredArgsConstructor
 @SpringBootApplication
 public class CapulanDbApplication implements CommandLineRunner {
     @Autowired
-    private UserService service;
+    private EncomendaService service;
+    @Autowired
+    private StockService stockService;
 
+    @Autowired
+    private FornecedorService fornecedorService;
 
     @Override
     public void run(String... args) throws Exception {
 
-        //var usuario = new Usuario("Marques JR", "1212121212fid", Genre.MASCULINO, UserType.CLIENTE, "senha123333");
-        //var cliente = new Cliente("marques123jr@gmail.com", "123wqrs", "Benfica");
-
-        //service.gravarCliente(usuario,cliente,4);
+//        fornecedorService.save(new Fornecedor("Jose-Corp","+125888957852","ali@gmail.com"));
+//
+//        Stock stock = new Stock(1000L, 200000L);
+//        Produto produto = new Produto("Calsas-AlyCap", 3000);
+//        stockService.gravar(1, 1, 1, stock, produto);
+//
+//        Encomenda encomenda = new Encomenda(7L);
+//        encomenda.setDataEntrega(LocalDate.now().plus(10, ChronoUnit.DAYS));
+//        service.save(encomenda, 1, 1, 1, 1);
 
     }
 

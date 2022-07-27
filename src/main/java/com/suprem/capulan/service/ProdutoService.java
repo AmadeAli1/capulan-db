@@ -1,6 +1,7 @@
 package com.suprem.capulan.service;
 
 import com.suprem.capulan.model.produto.Produto;
+import com.suprem.capulan.model.produto.ProdutoDto;
 import com.suprem.capulan.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class ProdutoService implements CrudDatabase<Produto> {
         return produtoRepository.findAll();
     }
 
+    public List<ProdutoDto> findAllProdutos() {
+        return produtoRepository.findAll().stream().map(ProdutoDto::new).toList();
+    }
 
     public Integer PRODUTOMAXID() {
         Integer maxid = produtoRepository.MAXID();

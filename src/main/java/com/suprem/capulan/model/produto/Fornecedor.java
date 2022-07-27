@@ -19,7 +19,7 @@ import java.util.Set;
 @Table(name = "FORNECEDOR")
 public class Fornecedor {
     @Id
-     @Column(name = "ID_FORNECEDOR", nullable = false)
+    @Column(name = "ID_FORNECEDOR", nullable = false)
     private Integer id;
 
     @Column(name = "NOME_EMPRESA", nullable = false, length = 50)
@@ -31,7 +31,7 @@ public class Fornecedor {
     @Column(name = "EMAIL", nullable = false, length = 50)
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idFornecedor", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idFornecedor", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Stock> stocks = new LinkedHashSet<>();
 
@@ -39,10 +39,6 @@ public class Fornecedor {
         this.nomeEmpresa = nomeEmpresa;
         this.contacto = contacto;
         this.email = email;
-    }
-
-    public Set<Stock> getStocks() {
-        return stocks;
     }
 
     public void addStock(Stock stock) {

@@ -1,6 +1,7 @@
 package com.suprem.capulan.service;
 
 import com.suprem.capulan.model.produto.Fornecedor;
+import com.suprem.capulan.model.produto.FornecedorDto;
 import com.suprem.capulan.repository.FornecedorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,10 @@ public class FornecedorService implements CrudDatabase<Fornecedor> {
     @Override
     public List<Fornecedor> findAll() {
         return fornecedorRepository.findAll();
+    }
+
+    public List<FornecedorDto> findAllFornecedor() {
+        return findAll().stream().map(FornecedorDto::new).toList();
     }
 
     @Override

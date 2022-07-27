@@ -1,5 +1,6 @@
 package com.suprem.capulan.model.relationship;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.suprem.capulan.model.location.Terminal;
 import com.suprem.capulan.model.produto.Produto;
 import com.suprem.capulan.model.user.Funcionario;
@@ -46,11 +47,13 @@ public class Encomenda {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_USUARIO", nullable = false)
     @ToString.Exclude
+    @JsonIgnore
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_PRODUTO", nullable = false)
+    @JsonIgnore
     @ToString.Exclude
     private Produto produto;
 
@@ -58,6 +61,7 @@ public class Encomenda {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_TERMINAL", nullable = false)
     @ToString.Exclude
+    @JsonIgnore
     private Terminal terminal;
 
     public Encomenda(Long quantidade) {
@@ -70,6 +74,7 @@ public class Encomenda {
             joinColumns = @JoinColumn(name = "ID_ENCOMENDA"),
             inverseJoinColumns = @JoinColumn(name = "ID_FUNCIONARIO"))
     @ToString.Exclude
+    @JsonIgnore
     private Set<Funcionario> funcionarios = new LinkedHashSet<>();
 
 

@@ -16,12 +16,14 @@ import static com.suprem.capulan.service.UserService.INCREMENT;
 public class FornecedorService implements CrudDatabase<Fornecedor> {
     private final FornecedorRepository fornecedorRepository;
 
-    public void save(Fornecedor fornecedor) {
+    public Boolean save(Fornecedor fornecedor) {
         if (fornecedor == null) {
             System.out.println("Fornecedor must not be null!");
+            return false;
         } else {
             fornecedor.setId(FORNECEDORMAXID() + INCREMENT);
             this.fornecedorRepository.save(fornecedor);
+            return true;
         }
     }
 

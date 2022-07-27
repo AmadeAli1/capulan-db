@@ -1,10 +1,8 @@
 package com.suprem.capulan.controller;
 
 import com.suprem.capulan.model.form.StockForm;
-import com.suprem.capulan.model.produto.Categoria;
-import com.suprem.capulan.model.produto.FornecedorDto;
-import com.suprem.capulan.model.produto.ProdutoDto;
-import com.suprem.capulan.model.produto.StockDto;
+import com.suprem.capulan.model.produto.*;
+import com.suprem.capulan.model.relationship.Encomenda;
 import com.suprem.capulan.model.views.Encomendaproduto;
 import com.suprem.capulan.service.*;
 import lombok.RequiredArgsConstructor;
@@ -34,10 +32,27 @@ public class ProdutoController {
         return encomendaService.findAllEncomendas();
     }
 
+    @PostMapping("/encomenda")
+    public ResponseEntity<Boolean> save(
+            @RequestBody Encomenda encomenda,
+            @RequestParam("produto") Integer produto,
+            @RequestParam("terminal") Integer terminal,
+            @RequestParam("funcionario") Integer funcionario,
+            @RequestParam("usuario") Integer usuario
+    ) {
+        var status = encomendaService.save(encomenda, produto, funcionario, usuario, terminal);
+        return ResponseEntity.ok(status);
+    }
 
     @GetMapping("/fornecedor")
     public List<FornecedorDto> findAllFornecedores() {
         return fornecedorService.findAllFornecedor();
+    }
+
+    @PostMapping("/fornecedor")
+    public ResponseEntity<Boolean> save(@RequestBody Fornecedor fornecedor) {
+        Boolean save = fornecedorService.save(fornecedor);
+        return ResponseEntity.ok(save);
     }
 
     @GetMapping("/categoria")

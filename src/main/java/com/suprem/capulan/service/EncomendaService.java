@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +27,7 @@ public class EncomendaService implements CrudDatabase<Encomenda> {
     private final TerminalService terminalService;
 
     @Transactional
-    public void save(Encomenda encomenda, int idProduto, int idFuncionario, int idUsuario, int idTerminal) {
+    public Boolean save(Encomenda encomenda, int idProduto, int idFuncionario, int idUsuario, int idTerminal) {
         var funcionario = userService.findFuncionarioById(idFuncionario);
         var produto = produtoService.findById(idProduto);
         var usuario = userService.findById(idUsuario);
@@ -33,6 +35,7 @@ public class EncomendaService implements CrudDatabase<Encomenda> {
         if (funcionario.isPresent() && produto.isPresent() && usuario.isPresent() && terminal.isPresent()) {
             long precoTotal = encomenda.getQuantidade() * produto.get().getPreco();
             encomenda.setPreco(precoTotal);
+            encomenda.setDataEntrega(LocalDate.now().plus(7, ChronoUnit.DAYS));
             encomenda.setId(ENCOMENDAMAXID() + INCREMENT);
             encomenda.setProduto(produto.get());
             encomenda.setTerminal(terminal.get());
@@ -41,8 +44,10 @@ public class EncomendaService implements CrudDatabase<Encomenda> {
             var funcionarioEncomenda = new FuncionarioEncomenda(funcionario.get(), save1);
             funcionarioEncomenda.setId(FUNCIONARIO_ENCOMENDA_MAXID() + INCREMENT);
             this.funcionarioEncomendaRepository.save(funcionarioEncomenda);
+            return true;
         } else {
             System.out.println("Erro ao gravar a encomenda");
+            return false;
         }
     }
 

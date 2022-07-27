@@ -1,5 +1,6 @@
 package com.suprem.capulan.model.produto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class Fornecedor {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idFornecedor", cascade = CascadeType.ALL)
     @ToString.Exclude
+    @JsonIgnore
     private Set<Stock> stocks = new LinkedHashSet<>();
 
     public Fornecedor(String nomeEmpresa, String contacto, String email) {

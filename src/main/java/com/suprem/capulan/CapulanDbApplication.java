@@ -26,7 +26,7 @@ public class CapulanDbApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//
+
 //        fornecedorService.save(new Fornecedor("Jose-Corp","+125888957852","ali@gmail.com"));
 //
 //        Stock stock = new Stock(1000L, 200000L);

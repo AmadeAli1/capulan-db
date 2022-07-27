@@ -1,5 +1,6 @@
 package com.suprem.capulan.model.produto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public class Categoria {
 
     @OneToMany(mappedBy = "idCategoria")
     @ToString.Exclude
+    @JsonIgnore
     private Set<Produto> produtos = new LinkedHashSet<>();
 
     public Categoria(String nome, CategoriaType categoriaType) {

@@ -1,5 +1,6 @@
 package com.suprem.capulan.model.produto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -27,15 +28,17 @@ public class Produto {
     private long preco;
 
     @Column(name = "QUANTIDADE_DISPONIVEL", nullable = false)
-    private Long quantidadeDisponivel;
+    private Long quantidade;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_CATEGORIA", nullable = false)
+    @JsonIgnore
     private Categoria idCategoria;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_STOCK", nullable = false)
+    @JsonIgnore
     private Stock idStock;
 
     public Produto(String nome, long preco) {

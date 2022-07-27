@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CatgeoriaService implements CrudDatabase<Categoria> {
+public class CategeoriaService implements CrudDatabase<Categoria> {
     private final CategoriaRepository categoriaRepository;
 
     @Autowired
-    public CatgeoriaService(CategoriaRepository categoriaRepository) {
+    public CategeoriaService(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
     }
 
@@ -43,6 +43,7 @@ public class CatgeoriaService implements CrudDatabase<Categoria> {
 
     @Override
     public List<Categoria> findAll() {
+        System.out.println("HERE");
         return categoriaRepository.findAll();
     }
 

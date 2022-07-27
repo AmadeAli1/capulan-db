@@ -1,8 +1,5 @@
 package com.suprem.capulan;
 
-import com.suprem.capulan.model.produto.*;
-import com.suprem.capulan.model.relationship.Encomenda;
-import com.suprem.capulan.service.CatgeoriaService;
 import com.suprem.capulan.service.EncomendaService;
 import com.suprem.capulan.service.FornecedorService;
 import com.suprem.capulan.service.StockService;
@@ -11,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @SpringBootApplication
@@ -27,9 +20,13 @@ public class CapulanDbApplication implements CommandLineRunner {
     @Autowired
     private FornecedorService fornecedorService;
 
+    public static void main(String[] args) {
+        SpringApplication.run(CapulanDbApplication.class, args);
+    }
+
     @Override
     public void run(String... args) throws Exception {
-
+//
 //        fornecedorService.save(new Fornecedor("Jose-Corp","+125888957852","ali@gmail.com"));
 //
 //        Stock stock = new Stock(1000L, 200000L);
@@ -40,11 +37,6 @@ public class CapulanDbApplication implements CommandLineRunner {
 //        encomenda.setDataEntrega(LocalDate.now().plus(10, ChronoUnit.DAYS));
 //        service.save(encomenda, 1, 1, 1, 1);
 
-    }
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(CapulanDbApplication.class, args);
     }
 
 }

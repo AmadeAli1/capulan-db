@@ -1,10 +1,8 @@
 package com.suprem.capulan.model.produto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.suprem.capulan.model.location.Terminal;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,7 +19,7 @@ import java.util.Objects;
 @Table(name = "STOCK")
 public class Stock {
     @Id
-     @Column(name = "ID_STOCK", nullable = false)
+    @Column(name = "ID_STOCK", nullable = false)
     private Integer id;
 
     @Column(name = "QUANTIDADE", nullable = false)
@@ -37,11 +35,13 @@ public class Stock {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_TERMINAL", nullable = false)
     @ToString.Exclude
+    @JsonIgnore
     private Terminal idTerminal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_FORNECEDOR")
     @ToString.Exclude
+    @JsonIgnore
     private Fornecedor idFornecedor;
 
     public Stock(Long quantidade, Long preco) {
